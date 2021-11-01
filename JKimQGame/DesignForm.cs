@@ -32,8 +32,8 @@ namespace JKimQGame
         private Image toolImage = null;
         private int toolNumber = 0;
 
-        public Image ToolImage { get => toolImage; set => toolImage = value; }
-        public int ToolNumber { get => toolNumber; set => toolNumber = value; }
+        //public Image ToolImage { get => toolImage; set => toolImage = value; }
+        //public int ToolNumber { get => toolNumber; set => toolNumber = value; }
 
         public DesignForm()
         {
@@ -86,15 +86,17 @@ namespace JKimQGame
 
             int x = LEFT;
             int y = TOP;
+
             for (int row = 0; row < rowLength; row++)
             {
                 for (int column = 0; column < columnLength; column++)
                 {
-                    Tool tool = new Tool(this);
+                    Tool tool = new Tool();
                     tool.Left = x;
                     tool.Top = y;
                     tool.Width = WIDTH;
                     tool.Height = HEIGHT;
+                    tool.Click += pictureBox_Click;
 
                     this.Controls.Add(tool);
                     tools[row, column] = tool;
@@ -129,6 +131,13 @@ namespace JKimQGame
             }
 
             return input;
+        }
+
+        private void pictureBox_Click(object sender, EventArgs e)
+        {
+            Tool tool = (Tool)sender;
+            tool.Image = toolImage;
+            tool.ToolNumber = toolNumber;
         }
 
         private void toolboxButton_Click(object sender, EventArgs e)

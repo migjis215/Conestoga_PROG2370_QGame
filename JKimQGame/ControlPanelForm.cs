@@ -1,16 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace JKimQGame
 {
-    
+
     public partial class ControlPanelForm : Form
     {
         private Image[] logos = {
@@ -30,11 +24,6 @@ namespace JKimQGame
 
         private void timer_Tick(object sender, EventArgs e)
         {
-            //if (Application.OpenForms.Count > 1)
-            //{
-            //    return;
-            //}
-
             picLogo.Image = logos[imageIndex];
             imageIndex++;
 
