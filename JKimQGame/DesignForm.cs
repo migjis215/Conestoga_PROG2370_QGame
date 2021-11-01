@@ -1,13 +1,8 @@
 ﻿
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace JKimQGame
@@ -31,9 +26,6 @@ namespace JKimQGame
         private Tool[,] tools;
         private Image toolImage = null;
         private int toolNumber = 0;
-
-        //public Image ToolImage { get => toolImage; set => toolImage = value; }
-        //public int ToolNumber { get => toolNumber; set => toolNumber = value; }
 
         public DesignForm()
         {

@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Drawing;
 using System.Windows.Forms;
 
 namespace JKimQGame
@@ -22,26 +17,15 @@ namespace JKimQGame
 
     class Tool : PictureBox
     {
-        //private DesignForm designForm;
-
-        //private Image toolImage;
         private int toolNumber;
 
-        //public Image ToolImage { get => toolImage; set => toolImage = value; }
         public int ToolNumber { get => toolNumber; set => toolNumber = value; }
 
         public Tool()
         {
-            //this.designForm = designForm;
             this.BorderStyle = BorderStyle.FixedSingle;
             this.BackColor = Color.Transparent;
             this.SizeMode = PictureBoxSizeMode.StretchImage;
-            //this.Click += pictureBox_Click;
         }
-        //private void pictureBox_Click(object sender, EventArgs e)
-        //{
-        //    this.Image = designForm.ToolImage;
-        //    this.ToolNumber = designForm.ToolNumber;
-        //}
     }
 }
