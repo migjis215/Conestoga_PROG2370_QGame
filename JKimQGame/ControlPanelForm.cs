@@ -1,12 +1,22 @@
-﻿using System;
+﻿/* ControlPanelForm.cs
+ * Assignment 2
+ * Revision Histroy
+ *      Jisung Kim, 2021.11.02: Created
+ *      
+ */
+
+using System;
 using System.Drawing;
 using System.Windows.Forms;
 
 namespace JKimQGame
 {
-
+    /// <summary>
+    /// A class to choose a level design or game play
+    /// </summary>
     public partial class ControlPanelForm : Form
     {
+        // Declaring class variables
         private Image[] logos = {
             Properties.Resources.logo_red,
             Properties.Resources.logo_yellow,
@@ -17,6 +27,9 @@ namespace JKimQGame
 
         private int imageIndex = 0;
 
+        /// <summary>
+        /// Default constructor of the ControlPanelForm class
+        /// </summary>
         public ControlPanelForm()
         {
             InitializeComponent();
