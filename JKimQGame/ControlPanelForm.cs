@@ -27,6 +27,7 @@ namespace JKimQGame
 
         private int imageIndex = 0;
 
+
         /// <summary>
         /// Default constructor of the ControlPanelForm class
         /// </summary>
@@ -34,6 +35,7 @@ namespace JKimQGame
         {
             InitializeComponent();
         }
+
 
         private void timer_Tick(object sender, EventArgs e)
         {
@@ -46,11 +48,13 @@ namespace JKimQGame
             }
         }
 
+
         private void btnDesign_MouseEnter(object sender, EventArgs e)
         {
             btnDesign.BackgroundImage = Properties.Resources.design_hover;
             Cursor = Cursors.Hand;
         }
+
 
         private void btnDesign_MouseLeave(object sender, EventArgs e)
         {
@@ -58,11 +62,13 @@ namespace JKimQGame
             Cursor = Cursors.Arrow;
         }
 
+
         private void btnDesign_Click(object sender, EventArgs e)
         {
             DesignForm designForm = new DesignForm();
             designForm.Show();
         }
+
 
         private void btnPlay_MouseEnter(object sender, EventArgs e)
         {
@@ -70,16 +76,17 @@ namespace JKimQGame
             Cursor = Cursors.Hand;
         }
 
+
         private void btnPlay_MouseLeave(object sender, EventArgs e)
         {
             btnPlay.BackgroundImage = Properties.Resources.play;
             Cursor = Cursors.Arrow;
         }
 
+
         private void btnExit_Click(object sender, EventArgs e)
         {
             Close();
         }
-
     }
 }

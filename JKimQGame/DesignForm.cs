@@ -37,6 +37,7 @@ namespace JKimQGame
         private Image toolImage = null;
         private int toolNumber = 0;
 
+
         /// <summary>
         /// Default constructor of the DesignForm class
         /// </summary>
@@ -45,10 +46,12 @@ namespace JKimQGame
             InitializeComponent();
         }
 
+
         private void DesignForm_Load(object sender, EventArgs e)
         {
             initialize();
         }
+
 
         /// <summary>
         /// Initialize variables and remove every PictureBox controls
@@ -77,6 +80,7 @@ namespace JKimQGame
 
             pictureBoxes.Clear();
         }
+
 
         private void btnGenerate_Click(object sender, EventArgs e)
         {
@@ -120,6 +124,7 @@ namespace JKimQGame
             }
         }
 
+
         /// <summary>
         /// Validate user input and return the value of the rows or columns
         /// </summary>
@@ -149,12 +154,14 @@ namespace JKimQGame
             return input;
         }
 
+
         private void pictureBox_Click(object sender, EventArgs e)
         {
             Tool tool = (Tool)sender;
             tool.Image = toolImage;
             tool.ToolNumber = toolNumber;
         }
+
 
         private void toolboxButton_Click(object sender, EventArgs e)
         {
@@ -168,12 +175,13 @@ namespace JKimQGame
             }
         }
 
+
         private void saveToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            countsOfTools = new int[imgToolbox.Images.Count];
             dlgSave.FileName = "savegame_" + DateTime.Now.ToString("MMddyyHHmmss");
 
             string levelInformation = rowLength + "\n" + columnLength + "\n";
-            countsOfTools = new int[imgToolbox.Images.Count];
 
             for (int row = 0; row < rowLength; row++)
             {
@@ -190,6 +198,7 @@ namespace JKimQGame
             try
             {
                 checkMissingDoors();
+                checkBoxes();
 
                 DialogResult result = dlgSave.ShowDialog();
 
@@ -248,6 +257,81 @@ namespace JKimQGame
             }
         }
 
+
+        /// <summary>
+        /// Check if every colored box has a matching colored door
+        /// </summary>
+        private void checkMissingDoors()
+        {
+            string errorMessage = "";
+
+            for (int i = 0; i < countsOfTools.Length; i++)
+            {
+                string toolName = getToolName(i);
+
+                if (i % 2 == 0 && isDoorOrBox(toolName))
+                {
+                    if (countsOfTools[i + 1] > 0 && countsOfTools[i] == 0)
+                    {
+                        errorMessage += toolName.Insert(toolName.Length - 4, " ") + "\n";
+                    }
+                }
+            }
+
+            if (errorMessage != "")
+            {
+                throw new Exception("Every coloured box must have a matching coloured door. " +
+                                    "Please add the doors below. \n\n" + errorMessage);
+            }
+        }
+
+
+        /// <summary>
+        /// Check if at least one box has been added
+        /// </summary>
+        private void checkBoxes()
+        {
+            int numberOfBoxes = 0;
+
+            for (int i = 0; i < countsOfTools.Length; i++)
+            {
+                string toolName = getToolName(i);
+
+                if (i % 2 != 0 && isDoorOrBox(toolName))
+                {
+                    numberOfBoxes += countsOfTools[i];
+                }
+            }
+
+            if (numberOfBoxes == 0)
+            {
+                throw new Exception("At least one box must be added.");
+            }
+        }
+
+
+        /// <summary>
+        /// Get the name of specific tool type
+        /// </summary>
+        /// <param name="indexOfToolTypes">Integer value of ToolTypes</param>
+        /// <returns>String value of tool name</returns>
+        private string getToolName(int indexOfToolTypes)
+        {
+            return ((ToolTypes)indexOfToolTypes).ToString();
+        }
+
+
+        /// <summary>
+        /// Check if the tool type is a door or box
+        /// </summary>
+        /// <param name="toolName">String value of tool name</param>
+        /// <returns>true if the tool name is door or box, otherwise false</returns>
+        private bool isDoorOrBox(string toolName)
+        {
+            return toolName != "None" && toolName != "Wall";
+        }
+
+
         /// <summary>
         /// Write the level information in the file
         /// </summary>
@@ -261,30 +345,6 @@ namespace JKimQGame
 
         }
 
-        /// <summary>
-        /// Check if every colored box has a matching colored door
-        /// </summary>
-        private void checkMissingDoors()
-        {
-            string errorMessage = "";
-
-            for (int i = 2; i < imgToolbox.Images.Count; i += 2)
-            {
-                if (countsOfTools[i + 1] > 0 && countsOfTools[i] == 0)
-                {
-                    ToolTypes door = (ToolTypes)i;
-                    string missingDoor = door.ToString();
-
-                    errorMessage += missingDoor.Insert(missingDoor.Length - 4, " ") + "\n";
-                }
-            }
-
-            if (errorMessage != "")
-            {
-                throw new Exception("Every coloured box must have a matching coloured door. " +
-                                    "Please add the doors below. \n\n" + errorMessage);
-            }
-        }
 
         private void resetToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -319,16 +379,19 @@ namespace JKimQGame
             }
         }
 
+
         private void closeToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Close();
         }
+
 
         private void btnGenerate_MouseEnter(object sender, EventArgs e)
         {
             btnGenerate.BackgroundImage = Properties.Resources.generate_hover;
             Cursor = Cursors.Hand;
         }
+
 
         private void btnGenerate_MouseLeave(object sender, EventArgs e)
         {
