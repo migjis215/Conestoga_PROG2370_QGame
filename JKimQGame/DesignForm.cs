@@ -58,7 +58,9 @@ namespace JKimQGame
             btnGenerate.Visible = true;
             toolImage = null;
             toolNumber = 0;
-
+            txtRows.Text = "";
+            txtColumns.Text = "";
+            txtRows.Select();
 
             foreach (var control in this.Controls)
             {
