@@ -61,6 +61,7 @@ namespace JKimQGame
             btnGenerate.Visible = true;
             toolImage = null;
             toolNumber = 0;
+
             txtRows.Text = "";
             txtColumns.Text = "";
             txtRows.Select();
@@ -197,8 +198,8 @@ namespace JKimQGame
 
             try
             {
-                checkMissingDoors();
                 checkBoxes();
+                checkMissingDoors();
 
                 DialogResult result = dlgSave.ShowDialog();
 
@@ -207,18 +208,23 @@ namespace JKimQGame
                     case DialogResult.None:
                         break;
                     case DialogResult.OK:
-                        save(levelInformation);
+                        using (StreamWriter writer = new StreamWriter(dlgSave.FileName))
+                        {
+                            writer.WriteLine(levelInformation);
+                        }
 
                         numberOfDoors = 0;
                         numberOfBoxes = 0;
 
-                        for (int i = 2; i < countsOfTools.Length; i++)
+                        for (int i = 0; i < countsOfTools.Length; i++)
                         {
-                            if (i % 2 == 0)
+                            string toolName = getToolName(i);
+
+                            if (toolName.Contains("Door"))
                             {
                                 numberOfDoors += countsOfTools[i];
                             }
-                            else
+                            else if (toolName.Contains("Box"))
                             {
                                 numberOfBoxes += countsOfTools[i];
                             }
@@ -269,7 +275,7 @@ namespace JKimQGame
             {
                 string toolName = getToolName(i);
 
-                if (i % 2 == 0 && isDoorOrBox(toolName))
+                if (toolName.Contains("Door"))
                 {
                     if (countsOfTools[i + 1] > 0 && countsOfTools[i] == 0)
                     {
@@ -297,7 +303,7 @@ namespace JKimQGame
             {
                 string toolName = getToolName(i);
 
-                if (i % 2 != 0 && isDoorOrBox(toolName))
+                if (toolName.Contains("Box"))
                 {
                     numberOfBoxes += countsOfTools[i];
                 }
@@ -308,7 +314,7 @@ namespace JKimQGame
                 throw new Exception("At least one box must be added.");
             }
         }
-
+        
 
         /// <summary>
         /// Get the name of specific tool type
@@ -318,31 +324,6 @@ namespace JKimQGame
         private string getToolName(int indexOfToolTypes)
         {
             return ((ToolTypes)indexOfToolTypes).ToString();
-        }
-
-
-        /// <summary>
-        /// Check if the tool type is a door or box
-        /// </summary>
-        /// <param name="toolName">String value of tool name</param>
-        /// <returns>true if the tool name is door or box, otherwise false</returns>
-        private bool isDoorOrBox(string toolName)
-        {
-            return toolName != "None" && toolName != "Wall";
-        }
-
-
-        /// <summary>
-        /// Write the level information in the file
-        /// </summary>
-        /// <param name="levelInformation">The level information to be written on file</param>
-        private void save(string levelInformation)
-        {
-            using (StreamWriter writer = new StreamWriter(dlgSave.FileName))
-            {
-                writer.WriteLine(levelInformation);
-            }
-
         }
 
 
