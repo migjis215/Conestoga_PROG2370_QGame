@@ -74,6 +74,17 @@ namespace JKimQGame
             Cursor = Cursors.Arrow;
         }
 
+<<<<<<< Updated upstream
+=======
+
+        private void btnPlay_Click(object sender, EventArgs e)
+        {
+            PlayForm playForm = new PlayForm();
+            playForm.Show();
+        }
+
+
+>>>>>>> Stashed changes
         private void btnExit_Click(object sender, EventArgs e)
         {
             Close();
