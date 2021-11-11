@@ -43,3 +43,4 @@ C:\PROG2370\Assignment\JKimQGame\obj\Debug\JKimQGame.csproj.GenerateResource.cac
 C:\PROG2370\Assignment\JKimQGame\obj\Debug\JKimQGame.csproj.CoreCompileInputs.cache
 C:\PROG2370\Assignment\JKimQGame\obj\Debug\JKimQGame.exe
 C:\PROG2370\Assignment\JKimQGame\obj\Debug\JKimQGame.pdb
+C:\PROG2370\Assignment\Conestoga_PROG2370_QGame\JKimQGame\obj\Debug\JKimQGame.PlayForm.resources
