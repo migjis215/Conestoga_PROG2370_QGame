@@ -34,17 +34,17 @@ namespace JKimQGame
             this.loadGameToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.closeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
-            this.panel1 = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.txtNumberOfMoves = new System.Windows.Forms.TextBox();
-            this.txtNumberOfRemainingBoxes = new System.Windows.Forms.TextBox();
+            this.btnDown = new System.Windows.Forms.Button();
+            this.label3 = new System.Windows.Forms.Label();
             this.btnLeft = new System.Windows.Forms.Button();
             this.btnRight = new System.Windows.Forms.Button();
-            this.btnDown = new System.Windows.Forms.Button();
+            this.txtNumberOfRemainingBoxes = new System.Windows.Forms.TextBox();
+            this.txtNumberOfMoves = new System.Windows.Forms.TextBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.panel1 = new System.Windows.Forms.Panel();
             this.btnUp = new System.Windows.Forms.Button();
-            this.label3 = new System.Windows.Forms.Label();
             this.menuStrip1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.SuspendLayout();
@@ -87,17 +87,6 @@ namespace JKimQGame
             this.toolStripSeparator1.Name = "toolStripSeparator1";
             this.toolStripSeparator1.Size = new System.Drawing.Size(266, 6);
             // 
-            // panel1
-            // 
-            this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.panel1.Location = new System.Drawing.Point(425, 72);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1249, 1260);
-            this.panel1.TabIndex = 1;
-            // 
             // panel2
             // 
             this.panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
@@ -111,40 +100,65 @@ namespace JKimQGame
             this.panel2.Controls.Add(this.txtNumberOfMoves);
             this.panel2.Controls.Add(this.label2);
             this.panel2.Controls.Add(this.label1);
-            this.panel2.Location = new System.Drawing.Point(25, 72);
+            this.panel2.Location = new System.Drawing.Point(26, 75);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(355, 1228);
-            this.panel2.TabIndex = 2;
+            this.panel2.TabIndex = 1;
             // 
-            // label1
+            // btnDown
             // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(13, 161);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(207, 27);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Number of Moves:";
+            this.btnDown.BackgroundImage = global::JKimQGame.Properties.Resources.down;
+            this.btnDown.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnDown.FlatAppearance.BorderSize = 0;
+            this.btnDown.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
+            this.btnDown.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
+            this.btnDown.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnDown.Location = new System.Drawing.Point(122, 896);
+            this.btnDown.Name = "btnDown";
+            this.btnDown.Size = new System.Drawing.Size(110, 110);
+            this.btnDown.TabIndex = 4;
+            this.btnDown.UseVisualStyleBackColor = true;
             // 
-            // label2
+            // label3
             // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(13, 341);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(326, 27);
-            this.label2.TabIndex = 0;
-            this.label2.Text = "Number of Remaining Boxes:";
+            this.label3.AutoSize = true;
+            this.label3.BackColor = System.Drawing.Color.Transparent;
+            this.label3.Font = new System.Drawing.Font("Arial", 10.875F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.label3.Location = new System.Drawing.Point(128, 855);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(100, 34);
+            this.label3.TabIndex = 3;
+            this.label3.Text = "MOVE";
+            this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // txtNumberOfMoves
+            // btnLeft
             // 
-            this.txtNumberOfMoves.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtNumberOfMoves.Location = new System.Drawing.Point(18, 213);
-            this.txtNumberOfMoves.Name = "txtNumberOfMoves";
-            this.txtNumberOfMoves.ReadOnly = true;
-            this.txtNumberOfMoves.Size = new System.Drawing.Size(320, 44);
-            this.txtNumberOfMoves.TabIndex = 1;
-            this.txtNumberOfMoves.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.btnLeft.BackgroundImage = global::JKimQGame.Properties.Resources.left;
+            this.btnLeft.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnLeft.FlatAppearance.BorderSize = 0;
+            this.btnLeft.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
+            this.btnLeft.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
+            this.btnLeft.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnLeft.Location = new System.Drawing.Point(12, 816);
+            this.btnLeft.Name = "btnLeft";
+            this.btnLeft.Size = new System.Drawing.Size(110, 110);
+            this.btnLeft.TabIndex = 3;
+            this.btnLeft.UseVisualStyleBackColor = true;
+            // 
+            // btnRight
+            // 
+            this.btnRight.BackgroundImage = global::JKimQGame.Properties.Resources.right;
+            this.btnRight.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnRight.FlatAppearance.BorderSize = 0;
+            this.btnRight.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
+            this.btnRight.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
+            this.btnRight.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnRight.Location = new System.Drawing.Point(232, 816);
+            this.btnRight.Name = "btnRight";
+            this.btnRight.Size = new System.Drawing.Size(110, 110);
+            this.btnRight.TabIndex = 5;
+            this.btnRight.UseVisualStyleBackColor = true;
             // 
             // txtNumberOfRemainingBoxes
             // 
@@ -156,56 +170,60 @@ namespace JKimQGame
             this.txtNumberOfRemainingBoxes.TabIndex = 1;
             this.txtNumberOfRemainingBoxes.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
-            // btnLeft
+            // txtNumberOfMoves
             // 
-            this.btnLeft.BackgroundImage = global::JKimQGame.Properties.Resources.left;
-            this.btnLeft.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.btnLeft.Location = new System.Drawing.Point(6, 724);
-            this.btnLeft.Name = "btnLeft";
-            this.btnLeft.Size = new System.Drawing.Size(110, 110);
-            this.btnLeft.TabIndex = 2;
-            this.btnLeft.UseVisualStyleBackColor = true;
+            this.txtNumberOfMoves.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtNumberOfMoves.Location = new System.Drawing.Point(18, 213);
+            this.txtNumberOfMoves.Name = "txtNumberOfMoves";
+            this.txtNumberOfMoves.ReadOnly = true;
+            this.txtNumberOfMoves.Size = new System.Drawing.Size(320, 44);
+            this.txtNumberOfMoves.TabIndex = 0;
+            this.txtNumberOfMoves.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
-            // btnRight
+            // label2
             // 
-            this.btnRight.BackgroundImage = global::JKimQGame.Properties.Resources.right;
-            this.btnRight.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.btnRight.Location = new System.Drawing.Point(226, 724);
-            this.btnRight.Name = "btnRight";
-            this.btnRight.Size = new System.Drawing.Size(110, 110);
-            this.btnRight.TabIndex = 2;
-            this.btnRight.UseVisualStyleBackColor = true;
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(13, 341);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(326, 27);
+            this.label2.TabIndex = 0;
+            this.label2.Text = "Number of Remaining Boxes:";
             // 
-            // btnDown
+            // label1
             // 
-            this.btnDown.BackgroundImage = global::JKimQGame.Properties.Resources.down;
-            this.btnDown.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.btnDown.Location = new System.Drawing.Point(116, 804);
-            this.btnDown.Name = "btnDown";
-            this.btnDown.Size = new System.Drawing.Size(110, 110);
-            this.btnDown.TabIndex = 2;
-            this.btnDown.UseVisualStyleBackColor = true;
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(13, 161);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(207, 27);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "Number of Moves:";
+            // 
+            // panel1
+            // 
+            this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.panel1.Location = new System.Drawing.Point(425, 75);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(1249, 1260);
+            this.panel1.TabIndex = 2;
             // 
             // btnUp
             // 
             this.btnUp.BackgroundImage = global::JKimQGame.Properties.Resources.up;
             this.btnUp.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.btnUp.Location = new System.Drawing.Point(116, 644);
+            this.btnUp.FlatAppearance.BorderSize = 0;
+            this.btnUp.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
+            this.btnUp.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
+            this.btnUp.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnUp.Location = new System.Drawing.Point(122, 736);
             this.btnUp.Name = "btnUp";
             this.btnUp.Size = new System.Drawing.Size(110, 110);
             this.btnUp.TabIndex = 2;
             this.btnUp.UseVisualStyleBackColor = true;
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Arial Black", 10.875F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(116, 759);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(112, 41);
-            this.label3.TabIndex = 3;
-            this.label3.Text = "MOVE";
-            this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // PlayForm
             // 
@@ -218,7 +236,7 @@ namespace JKimQGame
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "PlayForm";
-            this.Text = "PlayForm";
+            this.Text = "Play";
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.panel2.ResumeLayout(false);
@@ -235,16 +253,16 @@ namespace JKimQGame
         private System.Windows.Forms.ToolStripMenuItem loadGameToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         private System.Windows.Forms.ToolStripMenuItem closeToolStripMenuItem;
-        private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.Button btnDown;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Button btnLeft;
+        private System.Windows.Forms.Button btnRight;
+        private System.Windows.Forms.Button btnUp;
         private System.Windows.Forms.TextBox txtNumberOfRemainingBoxes;
         private System.Windows.Forms.TextBox txtNumberOfMoves;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Button btnUp;
-        private System.Windows.Forms.Button btnLeft;
-        private System.Windows.Forms.Button btnRight;
-        private System.Windows.Forms.Button btnDown;
-        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Panel panel1;
     }
 }

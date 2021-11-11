@@ -20,8 +20,6 @@ C:\PROG2370\Assignment\Assignment2\JKimQGame6\JKimQGame\obj\Debug\JKimQGame.cspr
 C:\PROG2370\Assignment\Assignment2\JKimQGame6\JKimQGame\obj\Debug\JKimQGame.csproj.CoreCompileInputs.cache
 C:\PROG2370\Assignment\Assignment2\JKimQGame6\JKimQGame\obj\Debug\JKimQGame.exe
 C:\PROG2370\Assignment\Assignment2\JKimQGame6\JKimQGame\obj\Debug\JKimQGame.pdb
-<<<<<<< Updated upstream
-=======
 C:\PROG2370\Assignment\Conestoga_PROG2370_QGame\JKimQGame\bin\Debug\JKimQGame.exe.config
 C:\PROG2370\Assignment\Conestoga_PROG2370_QGame\JKimQGame\bin\Debug\JKimQGame.exe
 C:\PROG2370\Assignment\Conestoga_PROG2370_QGame\JKimQGame\bin\Debug\JKimQGame.pdb
@@ -33,5 +31,15 @@ C:\PROG2370\Assignment\Conestoga_PROG2370_QGame\JKimQGame\obj\Debug\JKimQGame.cs
 C:\PROG2370\Assignment\Conestoga_PROG2370_QGame\JKimQGame\obj\Debug\JKimQGame.csproj.CoreCompileInputs.cache
 C:\PROG2370\Assignment\Conestoga_PROG2370_QGame\JKimQGame\obj\Debug\JKimQGame.exe
 C:\PROG2370\Assignment\Conestoga_PROG2370_QGame\JKimQGame\obj\Debug\JKimQGame.pdb
-C:\PROG2370\Assignment\Conestoga_PROG2370_QGame\JKimQGame\obj\Debug\JKimQGame.PlayForm.resources
->>>>>>> Stashed changes
+C:\PROG2370\Assignment\JKimQGame\bin\Debug\JKimQGame.exe.config
+C:\PROG2370\Assignment\JKimQGame\bin\Debug\JKimQGame.exe
+C:\PROG2370\Assignment\JKimQGame\bin\Debug\JKimQGame.pdb
+C:\PROG2370\Assignment\JKimQGame\obj\Debug\JKimQGame.csproj.AssemblyReference.cache
+C:\PROG2370\Assignment\JKimQGame\obj\Debug\JKimQGame.ControlPanelForm.resources
+C:\PROG2370\Assignment\JKimQGame\obj\Debug\JKimQGame.DesignForm.resources
+C:\PROG2370\Assignment\JKimQGame\obj\Debug\JKimQGame.PlayForm.resources
+C:\PROG2370\Assignment\JKimQGame\obj\Debug\JKimQGame.Properties.Resources.resources
+C:\PROG2370\Assignment\JKimQGame\obj\Debug\JKimQGame.csproj.GenerateResource.cache
+C:\PROG2370\Assignment\JKimQGame\obj\Debug\JKimQGame.csproj.CoreCompileInputs.cache
+C:\PROG2370\Assignment\JKimQGame\obj\Debug\JKimQGame.exe
+C:\PROG2370\Assignment\JKimQGame\obj\Debug\JKimQGame.pdb

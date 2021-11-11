@@ -1,18 +1,22 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
+﻿/* ControlPanelForm.cs
+ * Assignment 2
+ * Revision Histroy
+ *      Jisung Kim, 2021.11.02: Created
+ *      
+ */
+
+using System;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace JKimQGame
 {
-    
+    /// <summary>
+    /// A class to choose a level design or game play
+    /// </summary>
     public partial class ControlPanelForm : Form
     {
+        // Declaring class variables
         private Image[] logos = {
             Properties.Resources.logo_red,
             Properties.Resources.logo_yellow,
@@ -23,18 +27,18 @@ namespace JKimQGame
 
         private int imageIndex = 0;
 
+
+        /// <summary>
+        /// Default constructor of the ControlPanelForm class
+        /// </summary>
         public ControlPanelForm()
         {
             InitializeComponent();
         }
 
+
         private void timer_Tick(object sender, EventArgs e)
         {
-            //if (Application.OpenForms.Count > 1)
-            //{
-            //    return;
-            //}
-
             picLogo.Image = logos[imageIndex];
             imageIndex++;
 
@@ -44,11 +48,13 @@ namespace JKimQGame
             }
         }
 
+
         private void btnDesign_MouseEnter(object sender, EventArgs e)
         {
             btnDesign.BackgroundImage = Properties.Resources.design_hover;
             Cursor = Cursors.Hand;
         }
+
 
         private void btnDesign_MouseLeave(object sender, EventArgs e)
         {
@@ -56,11 +62,13 @@ namespace JKimQGame
             Cursor = Cursors.Arrow;
         }
 
+
         private void btnDesign_Click(object sender, EventArgs e)
         {
             DesignForm designForm = new DesignForm();
             designForm.Show();
         }
+
 
         private void btnPlay_MouseEnter(object sender, EventArgs e)
         {
@@ -68,14 +76,13 @@ namespace JKimQGame
             Cursor = Cursors.Hand;
         }
 
+
         private void btnPlay_MouseLeave(object sender, EventArgs e)
         {
             btnPlay.BackgroundImage = Properties.Resources.play;
             Cursor = Cursors.Arrow;
         }
 
-<<<<<<< Updated upstream
-=======
 
         private void btnPlay_Click(object sender, EventArgs e)
         {
@@ -84,11 +91,9 @@ namespace JKimQGame
         }
 
 
->>>>>>> Stashed changes
         private void btnExit_Click(object sender, EventArgs e)
         {
             Close();
         }
-
     }
 }

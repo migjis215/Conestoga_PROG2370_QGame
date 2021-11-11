@@ -1,19 +1,24 @@
-﻿
+﻿/* DesignForm.cs
+ * Assignment 2
+ * Revision History
+ *      Jisung Kim, 2021.11.02: Created
+ *      
+ */
+
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace JKimQGame
 {
+    /// <summary>
+    /// A class to design the game level
+    /// </summary>
     public partial class DesignForm : Form
     {
+        // Declaring class variables and constants
         private const int LEFT = 220;
         private const int TOP = 84;
         private const int WIDTH = 60;
@@ -32,24 +37,34 @@ namespace JKimQGame
         private Image toolImage = null;
         private int toolNumber = 0;
 
-        public Image ToolImage { get => toolImage; set => toolImage = value; }
-        public int ToolNumber { get => toolNumber; set => toolNumber = value; }
 
+        /// <summary>
+        /// Default constructor of the DesignForm class
+        /// </summary>
         public DesignForm()
         {
             InitializeComponent();
         }
 
+
         private void DesignForm_Load(object sender, EventArgs e)
         {
             initialize();
         }
+
+
+        /// <summary>
+        /// Initialize variables and remove every PictureBox controls
+        /// </summary>
         private void initialize()
         {
             btnGenerate.Visible = true;
             toolImage = null;
             toolNumber = 0;
 
+            txtRows.Text = "";
+            txtColumns.Text = "";
+            txtRows.Select();
 
             foreach (var control in this.Controls)
             {
@@ -66,6 +81,7 @@ namespace JKimQGame
 
             pictureBoxes.Clear();
         }
+
 
         private void btnGenerate_Click(object sender, EventArgs e)
         {
@@ -86,15 +102,17 @@ namespace JKimQGame
 
             int x = LEFT;
             int y = TOP;
+
             for (int row = 0; row < rowLength; row++)
             {
                 for (int column = 0; column < columnLength; column++)
                 {
-                    Tool tool = new Tool(this);
+                    Tool tool = new Tool();
                     tool.Left = x;
                     tool.Top = y;
                     tool.Width = WIDTH;
                     tool.Height = HEIGHT;
+                    tool.Click += pictureBox_Click;
 
                     this.Controls.Add(tool);
                     tools[row, column] = tool;
@@ -107,6 +125,12 @@ namespace JKimQGame
             }
         }
 
+
+        /// <summary>
+        /// Validate user input and return the value of the rows or columns
+        /// </summary>
+        /// <param name="textBox">The TextBox of the rows or columns to be validated</param>
+        /// <returns>If user input is valid, return the number of the rows or columns</returns>
         private int getRowsOrColumns(TextBox textBox)
         {
             int input = 0;
@@ -131,6 +155,15 @@ namespace JKimQGame
             return input;
         }
 
+
+        private void pictureBox_Click(object sender, EventArgs e)
+        {
+            Tool tool = (Tool)sender;
+            tool.Image = toolImage;
+            tool.ToolNumber = toolNumber;
+        }
+
+
         private void toolboxButton_Click(object sender, EventArgs e)
         {
             Button button = (Button)sender;
@@ -143,31 +176,55 @@ namespace JKimQGame
             }
         }
 
+
         private void saveToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            countsOfTools = new int[imgToolbox.Images.Count];
             dlgSave.FileName = "savegame_" + DateTime.Now.ToString("MMddyyHHmmss");
 
-            DialogResult result = dlgSave.ShowDialog();
+            string levelInformation = rowLength + "\n" + columnLength + "\n";
 
-            switch (result)
+            for (int row = 0; row < rowLength; row++)
             {
-                case DialogResult.None:
-                    break;
-                case DialogResult.OK:
-                    try
-                    {
-                        save();
+                for (int column = 0; column < columnLength; column++)
+                {
+                    levelInformation += row + "\n" +
+                                        column + "\n" +
+                                        tools[row, column].ToolNumber + "\n";
+
+                    countsOfTools[tools[row, column].ToolNumber]++;
+                }
+            }
+
+            try
+            {
+                checkBoxes();
+                checkMissingDoors();
+
+                DialogResult result = dlgSave.ShowDialog();
+
+                switch (result)
+                {
+                    case DialogResult.None:
+                        break;
+                    case DialogResult.OK:
+                        using (StreamWriter writer = new StreamWriter(dlgSave.FileName))
+                        {
+                            writer.WriteLine(levelInformation);
+                        }
 
                         numberOfDoors = 0;
                         numberOfBoxes = 0;
 
-                        for (int i = 2; i < countsOfTools.Length; i++)
+                        for (int i = 0; i < countsOfTools.Length; i++)
                         {
-                            if (i % 2 == 0)
+                            string toolName = getToolName(i);
+
+                            if (toolName.Contains("Door"))
                             {
                                 numberOfDoors += countsOfTools[i];
                             }
-                            else
+                            else if (toolName.Contains("Box"))
                             {
                                 numberOfBoxes += countsOfTools[i];
                             }
@@ -180,72 +237,95 @@ namespace JKimQGame
                                         "Q-Game",
                                         MessageBoxButtons.OK,
                                         MessageBoxIcon.Information);
-                    }
-                    catch (Exception ex)
-                    {
-                        MessageBox.Show("Exception trying to save the file: " + ex.Message,
-                                        "Q-Game",
-                                        MessageBoxButtons.OK,
-                                        MessageBoxIcon.Error);
-                    }
-                    break;
-                case DialogResult.Cancel:
-                    break;
-                case DialogResult.Abort:
-                    break;
-                case DialogResult.Retry:
-                    break;
-                case DialogResult.Ignore:
-                    break;
-                case DialogResult.Yes:
-                    break;
-                case DialogResult.No:
-                    break;
-                default:
-                    break;
+                        break;
+                    case DialogResult.Cancel:
+                        break;
+                    case DialogResult.Abort:
+                        break;
+                    case DialogResult.Retry:
+                        break;
+                    case DialogResult.Ignore:
+                        break;
+                    case DialogResult.Yes:
+                        break;
+                    case DialogResult.No:
+                        break;
+                    default:
+                        break;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Exception trying to save the file: " + ex.Message,
+                                "Q-Game",
+                                MessageBoxButtons.OK,
+                                MessageBoxIcon.Error);
             }
         }
 
-        private void save()
+
+        /// <summary>
+        /// Check if every colored box has a matching colored door
+        /// </summary>
+        private void checkMissingDoors()
         {
-            countsOfTools = new int[imgToolbox.Images.Count];
+            string errorMessage = "";
 
-            using (StreamWriter writer = new StreamWriter(dlgSave.FileName))
+            for (int i = 0; i < countsOfTools.Length; i++)
             {
-                writer.WriteLine(rowLength + "\n" + columnLength);
+                string toolName = getToolName(i);
 
-                for (int row = 0; row < rowLength; row++)
-                {
-                    for (int column = 0; column < columnLength; column++)
-                    {
-                        writer.WriteLine(row + "\n" +
-                                         column + "\n" +
-                                         tools[row, column].ToolNumber);
-
-                        countsOfTools[tools[row, column].ToolNumber]++;
-                    }
-                }
-
-                string errorMessage = "";
-
-                for (int i = 2; i < imgToolbox.Images.Count; i += 2)
+                if (toolName.Contains("Door"))
                 {
                     if (countsOfTools[i + 1] > 0 && countsOfTools[i] == 0)
                     {
-                        ToolTypes door = (ToolTypes)i;
-                        string missingDoor = door.ToString();
-
-                        errorMessage += missingDoor.Insert(missingDoor.Length - 4, " ") + "\n";
+                        errorMessage += toolName.Insert(toolName.Length - 4, " ") + "\n";
                     }
                 }
+            }
 
-                if (errorMessage != "")
-                {
-                    throw new Exception("Every coloured box must have a matching coloured door. " +
-                                        "Please add the doors below. \n\n" + errorMessage);
-                }
+            if (errorMessage != "")
+            {
+                throw new Exception("Every coloured box must have a matching coloured door. " +
+                                    "Please add the doors below. \n\n" + errorMessage);
             }
         }
+
+
+        /// <summary>
+        /// Check if at least one box has been added
+        /// </summary>
+        private void checkBoxes()
+        {
+            int numberOfBoxes = 0;
+
+            for (int i = 0; i < countsOfTools.Length; i++)
+            {
+                string toolName = getToolName(i);
+
+                if (toolName.Contains("Box"))
+                {
+                    numberOfBoxes += countsOfTools[i];
+                }
+            }
+
+            if (numberOfBoxes == 0)
+            {
+                throw new Exception("At least one box must be added.");
+            }
+        }
+        
+
+        /// <summary>
+        /// Get the name of specific tool type
+        /// </summary>
+        /// <param name="indexOfToolTypes">Integer value of ToolTypes</param>
+        /// <returns>String value of tool name</returns>
+        private string getToolName(int indexOfToolTypes)
+        {
+            return ((ToolTypes)indexOfToolTypes).ToString();
+        }
+
 
         private void resetToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -280,16 +360,19 @@ namespace JKimQGame
             }
         }
 
+
         private void closeToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Close();
         }
+
 
         private void btnGenerate_MouseEnter(object sender, EventArgs e)
         {
             btnGenerate.BackgroundImage = Properties.Resources.generate_hover;
             Cursor = Cursors.Hand;
         }
+
 
         private void btnGenerate_MouseLeave(object sender, EventArgs e)
         {

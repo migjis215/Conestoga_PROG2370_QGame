@@ -1,47 +1,73 @@
-﻿using System;
-using System.Collections.Generic;
+﻿/* Tool.cs
+ * Assignment 2
+ * Revision Histroy
+ *      Jisung Kim, 2021.11.02: Created
+ *      
+ */
+
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace JKimQGame
 {
+    /// <summary>
+    /// Specify the tool types
+    /// </summary>
     public enum ToolTypes
     {
+        /// <summary>
+        /// Type to empty the cell
+        /// </summary>
         None,
+        /// <summary>
+        /// Type of wall
+        /// </summary>
         Wall,
+        /// <summary>
+        /// Type of red door
+        /// </summary>
         RedDoor,
+        /// <summary>
+        /// Type of red box
+        /// </summary>
         RedBox,
+        /// <summary>
+        /// Type of blue door
+        /// </summary>
         BlueDoor,
+        /// <summary>
+        /// Type of blue box
+        /// </summary>
         BlueBox,
+        /// <summary>
+        /// Type of green door
+        /// </summary>
         GreenDoor,
+        /// <summary>
+        /// Type of green box
+        /// </summary>
         GreenBox
     }
 
+    /// <summary>
+    /// A class to create objects that inherit PictureBox class
+    /// </summary>
     class Tool : PictureBox
     {
-        private DesignForm designForm;
-
-        private Image toolImage;
+        // Declaring class variable
         private int toolNumber;
 
-        public Image ToolImage { get => toolImage; set => toolImage = value; }
+        // Declaring property for accessing class variable
         public int ToolNumber { get => toolNumber; set => toolNumber = value; }
 
-        public Tool(DesignForm designForm)
+        /// <summary>
+        /// Default constructor of the Tool class
+        /// </summary>
+        public Tool()
         {
-            this.designForm = designForm;
             this.BorderStyle = BorderStyle.FixedSingle;
             this.BackColor = Color.Transparent;
             this.SizeMode = PictureBoxSizeMode.StretchImage;
-            this.Click += pictureBox_Click;
-        }
-        private void pictureBox_Click(object sender, EventArgs e)
-        {
-            this.Image = designForm.ToolImage;
-            this.ToolNumber = designForm.ToolNumber;
         }
     }
 }
