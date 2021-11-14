@@ -29,12 +29,14 @@ namespace JKimQGame
         /// </summary>
         private void InitializeComponent()
         {
-            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
+            this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(PlayForm));
+            this.menuStrip = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.loadGameToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.closeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.panel2 = new System.Windows.Forms.Panel();
+            this.pnlControl = new System.Windows.Forms.Panel();
             this.btnDown = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
             this.btnLeft = new System.Windows.Forms.Button();
@@ -44,21 +46,26 @@ namespace JKimQGame
             this.txtNumberOfMoves = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.menuStrip1.SuspendLayout();
-            this.panel2.SuspendLayout();
+            this.pnlTiles = new System.Windows.Forms.Panel();
+            this.dlgOpen = new System.Windows.Forms.OpenFileDialog();
+            this.imgToolbox = new System.Windows.Forms.ImageList(this.components);
+            this.tmrMatch = new System.Windows.Forms.Timer(this.components);
+            this.tmrMove = new System.Windows.Forms.Timer(this.components);
+            this.menuStrip.SuspendLayout();
+            this.pnlControl.SuspendLayout();
             this.SuspendLayout();
             // 
-            // menuStrip1
+            // menuStrip
             // 
-            this.menuStrip1.ImageScalingSize = new System.Drawing.Size(32, 32);
-            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.menuStrip.GripMargin = new System.Windows.Forms.Padding(2, 2, 0, 2);
+            this.menuStrip.ImageScalingSize = new System.Drawing.Size(32, 32);
+            this.menuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.fileToolStripMenuItem});
-            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
-            this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(1674, 40);
-            this.menuStrip1.TabIndex = 0;
-            this.menuStrip1.Text = "menuStrip1";
+            this.menuStrip.Location = new System.Drawing.Point(0, 0);
+            this.menuStrip.Name = "menuStrip";
+            this.menuStrip.Size = new System.Drawing.Size(1674, 40);
+            this.menuStrip.TabIndex = 0;
+            this.menuStrip.Text = "menuStrip1";
             // 
             // fileToolStripMenuItem
             // 
@@ -73,37 +80,40 @@ namespace JKimQGame
             // loadGameToolStripMenuItem
             // 
             this.loadGameToolStripMenuItem.Name = "loadGameToolStripMenuItem";
-            this.loadGameToolStripMenuItem.Size = new System.Drawing.Size(269, 44);
-            this.loadGameToolStripMenuItem.Text = "L&oad Game";
+            this.loadGameToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.O)));
+            this.loadGameToolStripMenuItem.Size = new System.Drawing.Size(355, 44);
+            this.loadGameToolStripMenuItem.Text = "&Load Game";
+            this.loadGameToolStripMenuItem.Click += new System.EventHandler(this.loadGameToolStripMenuItem_Click);
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(266, 6);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(352, 6);
             // 
             // closeToolStripMenuItem
             // 
             this.closeToolStripMenuItem.Name = "closeToolStripMenuItem";
-            this.closeToolStripMenuItem.Size = new System.Drawing.Size(269, 44);
+            this.closeToolStripMenuItem.Size = new System.Drawing.Size(355, 44);
             this.closeToolStripMenuItem.Text = "&Close";
+            this.closeToolStripMenuItem.Click += new System.EventHandler(this.closeToolStripMenuItem_Click);
             // 
-            // panel2
+            // pnlControl
             // 
-            this.panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.panel2.Controls.Add(this.btnDown);
-            this.panel2.Controls.Add(this.label3);
-            this.panel2.Controls.Add(this.btnLeft);
-            this.panel2.Controls.Add(this.btnRight);
-            this.panel2.Controls.Add(this.btnUp);
-            this.panel2.Controls.Add(this.txtNumberOfRemainingBoxes);
-            this.panel2.Controls.Add(this.txtNumberOfMoves);
-            this.panel2.Controls.Add(this.label2);
-            this.panel2.Controls.Add(this.label1);
-            this.panel2.Location = new System.Drawing.Point(26, 75);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(355, 1228);
-            this.panel2.TabIndex = 1;
+            this.pnlControl.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.pnlControl.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.pnlControl.Controls.Add(this.btnDown);
+            this.pnlControl.Controls.Add(this.label3);
+            this.pnlControl.Controls.Add(this.btnLeft);
+            this.pnlControl.Controls.Add(this.btnRight);
+            this.pnlControl.Controls.Add(this.btnUp);
+            this.pnlControl.Controls.Add(this.txtNumberOfRemainingBoxes);
+            this.pnlControl.Controls.Add(this.txtNumberOfMoves);
+            this.pnlControl.Controls.Add(this.label2);
+            this.pnlControl.Controls.Add(this.label1);
+            this.pnlControl.Location = new System.Drawing.Point(26, 75);
+            this.pnlControl.Name = "pnlControl";
+            this.pnlControl.Size = new System.Drawing.Size(355, 1228);
+            this.pnlControl.TabIndex = 1;
             // 
             // btnDown
             // 
@@ -114,12 +124,14 @@ namespace JKimQGame
             this.btnDown.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
             this.btnDown.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
             this.btnDown.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnDown.Location = new System.Drawing.Point(117, 923);
+            this.btnDown.Location = new System.Drawing.Point(116, 923);
             this.btnDown.Name = "btnDown";
             this.btnDown.Size = new System.Drawing.Size(120, 96);
             this.btnDown.TabIndex = 4;
             this.btnDown.UseVisualStyleBackColor = true;
-            this.btnDown.Click += new System.EventHandler(this.btnDown_Click);
+            this.btnDown.Click += new System.EventHandler(this.controller_Click);
+            this.btnDown.MouseEnter += new System.EventHandler(this.btnDown_MouseEnter);
+            this.btnDown.MouseLeave += new System.EventHandler(this.btnDown_MouseLeave);
             // 
             // label3
             // 
@@ -148,7 +160,9 @@ namespace JKimQGame
             this.btnLeft.Size = new System.Drawing.Size(96, 120);
             this.btnLeft.TabIndex = 3;
             this.btnLeft.UseVisualStyleBackColor = true;
-            this.btnLeft.Click += new System.EventHandler(this.btnLeft_Click);
+            this.btnLeft.Click += new System.EventHandler(this.controller_Click);
+            this.btnLeft.MouseEnter += new System.EventHandler(this.btnLeft_MouseEnter);
+            this.btnLeft.MouseLeave += new System.EventHandler(this.btnLeft_MouseLeave);
             // 
             // btnRight
             // 
@@ -164,7 +178,9 @@ namespace JKimQGame
             this.btnRight.Size = new System.Drawing.Size(96, 120);
             this.btnRight.TabIndex = 5;
             this.btnRight.UseVisualStyleBackColor = true;
-            this.btnRight.Click += new System.EventHandler(this.btnRight_Click);
+            this.btnRight.Click += new System.EventHandler(this.controller_Click);
+            this.btnRight.MouseEnter += new System.EventHandler(this.btnRight_MouseEnter);
+            this.btnRight.MouseLeave += new System.EventHandler(this.btnRight_MouseLeave);
             // 
             // btnUp
             // 
@@ -175,12 +191,16 @@ namespace JKimQGame
             this.btnUp.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
             this.btnUp.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
             this.btnUp.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnUp.Location = new System.Drawing.Point(117, 762);
+            this.btnUp.Font = new System.Drawing.Font("Arial", 10.125F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnUp.ForeColor = System.Drawing.SystemColors.ButtonFace;
+            this.btnUp.Location = new System.Drawing.Point(116, 762);
             this.btnUp.Name = "btnUp";
             this.btnUp.Size = new System.Drawing.Size(120, 96);
             this.btnUp.TabIndex = 2;
             this.btnUp.UseVisualStyleBackColor = true;
-            this.btnUp.Click += new System.EventHandler(this.btnUp_Click);
+            this.btnUp.Click += new System.EventHandler(this.controller_Click);
+            this.btnUp.MouseEnter += new System.EventHandler(this.btnUp_MouseEnter);
+            this.btnUp.MouseLeave += new System.EventHandler(this.btnUp_MouseLeave);
             // 
             // txtNumberOfRemainingBoxes
             // 
@@ -222,16 +242,46 @@ namespace JKimQGame
             this.label1.TabIndex = 0;
             this.label1.Text = "Number of Moves:";
             // 
-            // panel1
+            // pnlTiles
             // 
-            this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.pnlTiles.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.panel1.Location = new System.Drawing.Point(425, 75);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1249, 1260);
-            this.panel1.TabIndex = 2;
+            this.pnlTiles.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.pnlTiles.Location = new System.Drawing.Point(425, 75);
+            this.pnlTiles.Name = "pnlTiles";
+            this.pnlTiles.Size = new System.Drawing.Size(1249, 1253);
+            this.pnlTiles.TabIndex = 2;
+            // 
+            // dlgOpen
+            // 
+            this.dlgOpen.DefaultExt = "qgame";
+            this.dlgOpen.Filter = "QGAME File|*.qgame|All Files|*.*";
+            this.dlgOpen.InitialDirectory = "C:\\";
+            this.dlgOpen.RestoreDirectory = true;
+            // 
+            // imgToolbox
+            // 
+            this.imgToolbox.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imgToolbox.ImageStream")));
+            this.imgToolbox.TransparentColor = System.Drawing.Color.Transparent;
+            this.imgToolbox.Images.SetKeyName(0, "none.png");
+            this.imgToolbox.Images.SetKeyName(1, "wall.png");
+            this.imgToolbox.Images.SetKeyName(2, "reddoor.png");
+            this.imgToolbox.Images.SetKeyName(3, "redbox.png");
+            this.imgToolbox.Images.SetKeyName(4, "bluedoor.png");
+            this.imgToolbox.Images.SetKeyName(5, "bluebox.png");
+            this.imgToolbox.Images.SetKeyName(6, "greendoor.png");
+            this.imgToolbox.Images.SetKeyName(7, "greenbox.png");
+            // 
+            // tmrMatch
+            // 
+            this.tmrMatch.Interval = 1;
+            this.tmrMatch.Tick += new System.EventHandler(this.tmrMatch_Tick);
+            // 
+            // tmrMove
+            // 
+            this.tmrMove.Interval = 50;
+            this.tmrMove.Tick += new System.EventHandler(this.tmrMove_Tick);
             // 
             // PlayForm
             // 
@@ -239,16 +289,16 @@ namespace JKimQGame
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(181)))), ((int)(((byte)(177)))), ((int)(((byte)(161)))));
             this.ClientSize = new System.Drawing.Size(1674, 1329);
-            this.Controls.Add(this.panel2);
-            this.Controls.Add(this.panel1);
-            this.Controls.Add(this.menuStrip1);
-            this.MainMenuStrip = this.menuStrip1;
+            this.Controls.Add(this.pnlControl);
+            this.Controls.Add(this.pnlTiles);
+            this.Controls.Add(this.menuStrip);
+            this.MainMenuStrip = this.menuStrip;
             this.Name = "PlayForm";
             this.Text = "Play";
-            this.menuStrip1.ResumeLayout(false);
-            this.menuStrip1.PerformLayout();
-            this.panel2.ResumeLayout(false);
-            this.panel2.PerformLayout();
+            this.menuStrip.ResumeLayout(false);
+            this.menuStrip.PerformLayout();
+            this.pnlControl.ResumeLayout(false);
+            this.pnlControl.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -256,12 +306,12 @@ namespace JKimQGame
 
         #endregion
 
-        private System.Windows.Forms.MenuStrip menuStrip1;
+        private System.Windows.Forms.MenuStrip menuStrip;
         private System.Windows.Forms.ToolStripMenuItem fileToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem loadGameToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         private System.Windows.Forms.ToolStripMenuItem closeToolStripMenuItem;
-        private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.Panel pnlControl;
         private System.Windows.Forms.Button btnDown;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Button btnLeft;
@@ -271,6 +321,10 @@ namespace JKimQGame
         private System.Windows.Forms.TextBox txtNumberOfMoves;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Panel pnlTiles;
+        private System.Windows.Forms.OpenFileDialog dlgOpen;
+        private System.Windows.Forms.ImageList imgToolbox;
+        private System.Windows.Forms.Timer tmrMatch;
+        private System.Windows.Forms.Timer tmrMove;
     }
 }

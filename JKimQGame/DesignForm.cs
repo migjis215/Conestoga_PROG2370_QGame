@@ -27,11 +27,11 @@ namespace JKimQGame
         private int rowLength = 0;
         private int columnLength = 0;
 
+        private List<PictureBox> pictureBoxes = new List<PictureBox>();
+
         private int[] countsOfTools;
         private int numberOfDoors = 0;
         private int numberOfBoxes = 0;
-
-        private List<PictureBox> pictureBoxes = new List<PictureBox>();
 
         private Tool[,] tools;
         private Image toolImage = null;
@@ -65,6 +65,8 @@ namespace JKimQGame
             txtRows.Text = "";
             txtColumns.Text = "";
             txtRows.Select();
+
+            //Helper.clearTiles(this.Controls);
 
             foreach (var control in this.Controls)
             {
@@ -182,15 +184,15 @@ namespace JKimQGame
             countsOfTools = new int[imgToolbox.Images.Count];
             dlgSave.FileName = "savegame_" + DateTime.Now.ToString("MMddyyHHmmss");
 
-            string levelInformation = rowLength + "\n" + columnLength + "\n";
+            string levelInformation = rowLength + "\n" + columnLength;
 
             for (int row = 0; row < rowLength; row++)
             {
                 for (int column = 0; column < columnLength; column++)
                 {
-                    levelInformation += row + "\n" +
+                    levelInformation += "\n" + row + "\n" +
                                         column + "\n" +
-                                        tools[row, column].ToolNumber + "\n";
+                                        tools[row, column].ToolNumber;
 
                     countsOfTools[tools[row, column].ToolNumber]++;
                 }
@@ -198,8 +200,8 @@ namespace JKimQGame
 
             try
             {
-                checkBoxes();
-                checkMissingDoors();
+                //checkBoxes();
+                //checkMissingDoors();
 
                 DialogResult result = dlgSave.ShowDialog();
 
@@ -218,7 +220,7 @@ namespace JKimQGame
 
                         for (int i = 0; i < countsOfTools.Length; i++)
                         {
-                            string toolName = getToolName(i);
+                            string toolName = Tool.getToolName(i);
 
                             if (toolName.Contains("Door"))
                             {
@@ -273,7 +275,7 @@ namespace JKimQGame
 
             for (int i = 0; i < countsOfTools.Length; i++)
             {
-                string toolName = getToolName(i);
+                string toolName = Tool.getToolName(i);
 
                 if (toolName.Contains("Door"))
                 {
@@ -301,7 +303,7 @@ namespace JKimQGame
 
             for (int i = 0; i < countsOfTools.Length; i++)
             {
-                string toolName = getToolName(i);
+                string toolName = Tool.getToolName(i);
 
                 if (toolName.Contains("Box"))
                 {
@@ -316,15 +318,15 @@ namespace JKimQGame
         }
         
 
-        /// <summary>
-        /// Get the name of specific tool type
-        /// </summary>
-        /// <param name="indexOfToolTypes">Integer value of ToolTypes</param>
-        /// <returns>String value of tool name</returns>
-        private string getToolName(int indexOfToolTypes)
-        {
-            return ((ToolTypes)indexOfToolTypes).ToString();
-        }
+        ///// <summary>
+        ///// Get the name of specific tool type
+        ///// </summary>
+        ///// <param name="indexOfToolTypes">Integer value of ToolTypes</param>
+        ///// <returns>String value of tool name</returns>
+        //private string getToolName(int indexOfToolTypes)
+        //{
+        //    return ((ToolTypes)indexOfToolTypes).ToString();
+        //}
 
 
         private void resetToolStripMenuItem_Click(object sender, EventArgs e)

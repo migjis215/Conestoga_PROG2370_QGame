@@ -2,6 +2,7 @@
  * Assignment 2
  * Revision Histroy
  *      Jisung Kim, 2021.11.02: Created
+ *      Jisung Kim, 2021.11.13: Added properties (RowIndex, ColumnIndex)
  *      
  */
 
@@ -55,9 +56,13 @@ namespace JKimQGame
     class Tool : PictureBox
     {
         // Declaring class variable
+        private int rowIndex;
+        private int columnIndex;
         private int toolNumber;
 
         // Declaring property for accessing class variable
+        public int RowIndex { get => rowIndex; set => rowIndex = value; }
+        public int ColumnIndex { get => columnIndex; set => columnIndex = value; }
         public int ToolNumber { get => toolNumber; set => toolNumber = value; }
 
         /// <summary>
@@ -68,6 +73,16 @@ namespace JKimQGame
             this.BorderStyle = BorderStyle.FixedSingle;
             this.BackColor = Color.Transparent;
             this.SizeMode = PictureBoxSizeMode.StretchImage;
+        }
+
+        /// <summary>
+        /// Get the name of specific tool type
+        /// </summary>
+        /// <param name="indexOfToolTypes">Integer value of ToolTypes</param>
+        /// <returns>String value of tool name</returns>
+        public static string getToolName(int toolNumber)
+        {
+            return ((ToolTypes)toolNumber).ToString();
         }
     }
 }

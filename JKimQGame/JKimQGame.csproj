@@ -58,6 +58,7 @@
     <Compile Include="DesignForm.Designer.cs">
       <DependentUpon>DesignForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Helper.cs" />
     <Compile Include="PlayForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -181,6 +182,15 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\wall.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\bluehandtruck.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\greenhandtruck.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\redhandtruck.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

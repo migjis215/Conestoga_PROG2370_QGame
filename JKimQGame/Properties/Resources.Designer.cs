@@ -93,6 +93,16 @@ namespace JKimQGame.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap bluehandtruck {
+            get {
+                object obj = ResourceManager.GetObject("bluehandtruck", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap design {
             get {
                 object obj = ResourceManager.GetObject("design", resourceCulture);
@@ -166,6 +176,16 @@ namespace JKimQGame.Properties {
         internal static System.Drawing.Bitmap greendoor {
             get {
                 object obj = ResourceManager.GetObject("greendoor", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap greenhandtruck {
+            get {
+                object obj = ResourceManager.GetObject("greenhandtruck", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -276,6 +296,16 @@ namespace JKimQGame.Properties {
         internal static System.Drawing.Bitmap reddoor {
             get {
                 object obj = ResourceManager.GetObject("reddoor", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap redhandtruck {
+            get {
+                object obj = ResourceManager.GetObject("redhandtruck", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
