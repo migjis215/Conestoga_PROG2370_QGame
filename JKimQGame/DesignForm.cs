@@ -66,8 +66,6 @@ namespace JKimQGame
             txtColumns.Text = "";
             txtRows.Select();
 
-            //Helper.clearTiles(this.Controls);
-
             foreach (var control in this.Controls)
             {
                 if (control is PictureBox pictureBox)
@@ -200,8 +198,8 @@ namespace JKimQGame
 
             try
             {
-                //checkBoxes();
-                //checkMissingDoors();
+                checkBoxes();
+                checkMissingDoors();
 
                 DialogResult result = dlgSave.ShowDialog();
 
@@ -316,17 +314,6 @@ namespace JKimQGame
                 throw new Exception("At least one box must be added.");
             }
         }
-        
-
-        ///// <summary>
-        ///// Get the name of specific tool type
-        ///// </summary>
-        ///// <param name="indexOfToolTypes">Integer value of ToolTypes</param>
-        ///// <returns>String value of tool name</returns>
-        //private string getToolName(int indexOfToolTypes)
-        //{
-        //    return ((ToolTypes)indexOfToolTypes).ToString();
-        //}
 
 
         private void resetToolStripMenuItem_Click(object sender, EventArgs e)

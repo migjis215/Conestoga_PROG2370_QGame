@@ -280,7 +280,7 @@ namespace JKimQGame
             // 
             // tmrMove
             // 
-            this.tmrMove.Interval = 50;
+            this.tmrMove.Interval = 80;
             this.tmrMove.Tick += new System.EventHandler(this.tmrMove_Tick);
             // 
             // PlayForm
@@ -295,6 +295,7 @@ namespace JKimQGame
             this.MainMenuStrip = this.menuStrip;
             this.Name = "PlayForm";
             this.Text = "Play";
+            this.Load += new System.EventHandler(this.PlayForm_Load);
             this.menuStrip.ResumeLayout(false);
             this.menuStrip.PerformLayout();
             this.pnlControl.ResumeLayout(false);

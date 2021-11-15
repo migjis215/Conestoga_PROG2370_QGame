@@ -58,7 +58,6 @@
     <Compile Include="DesignForm.Designer.cs">
       <DependentUpon>DesignForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Helper.cs" />
     <Compile Include="PlayForm.cs">
       <SubType>Form</SubType>
     </Compile>

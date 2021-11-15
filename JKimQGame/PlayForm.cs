@@ -1,18 +1,23 @@
-﻿using System;
+﻿/* PlayForm.cs
+ * Assignment 3
+ * Revision History
+ *      Jisung Kim, 2021.11.15: Created
+ *      
+ */
+
+using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace JKimQGame
 {
+    /// <summary>
+    /// A class to play the game
+    /// </summary>
     public partial class PlayForm : Form
     {
+        // Declaring class variables and constants
         private const int INIT_LEFT = 60;
         private const int INIT_TOP = 60;
         private const int WIDTH = 60;
@@ -36,11 +41,24 @@ namespace JKimQGame
         private Tool tileSelected;
         private Tool success;
 
+        /// <summary>
+        /// Default constructor of the PlayForm class
+        /// </summary>
         public PlayForm()
         {
             InitializeComponent();
         }
 
+
+        private void PlayForm_Load(object sender, EventArgs e)
+        {
+            initialize();
+        }
+
+
+        /// <summary>
+        /// Initialize variables and remove every PictureBox controls
+        /// </summary>
         private void initialize()
         {
             rowLength = 0;
@@ -67,7 +85,6 @@ namespace JKimQGame
                     pictureBoxes.Add(pictureBox);
                 }
             }
-
             foreach (var pictureBox in pictureBoxes)
             {
                 pictureBox.Dispose();
@@ -75,6 +92,7 @@ namespace JKimQGame
 
             pictureBoxes.Clear();
         }
+
 
         private void loadGameToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -84,8 +102,8 @@ namespace JKimQGame
                 case DialogResult.None:
                     break;
                 case DialogResult.OK:
-                    string fileName = dlgOpen.FileName;
                     initialize();
+                    string fileName = dlgOpen.FileName;
                     load(fileName);
                     update();
                     break;
@@ -114,6 +132,11 @@ namespace JKimQGame
             }
         }
 
+
+        /// <summary>
+        /// Read the game information file and display the game tiles on the screen
+        /// </summary>
+        /// <param name="fileName">File name to be read</param>
         private void load(string fileName)
         {
             try
@@ -178,6 +201,10 @@ namespace JKimQGame
             }
         }
 
+
+        /// <summary>
+        /// Update the number of moves and remaining boxes and notify if the game is over
+        /// </summary>
         private void update()
         {
             txtNumberOfMoves.Text = numberOfMoves.ToString();
@@ -194,6 +221,7 @@ namespace JKimQGame
             }
         }
 
+
         private void tile_Click(object sender, EventArgs e)
         {
             Tool tile = (Tool)sender;
@@ -206,7 +234,8 @@ namespace JKimQGame
 
             if (tileSelected != null)
             {
-                if (tileSelected.RowIndex != tile.RowIndex || tileSelected.ColumnIndex != tile.ColumnIndex)
+                if (tileSelected.RowIndex != tile.RowIndex || 
+                    tileSelected.ColumnIndex != tile.ColumnIndex)
                 {
                     tileSelected.Image = imgToolbox.Images[tileSelected.ToolNumber];
                 }
@@ -232,17 +261,20 @@ namespace JKimQGame
                 default:
                     break;
             }
-
-            //initialRowIndex = tileSelected.RowIndex;
-            //initialColumnIndex = tileSelected.ColumnIndex;
         }
 
+
+        /// <summary>
+        /// Get the tile specified row and column
+        /// </summary>
+        /// <param name="row">An integer value of the row</param>
+        /// <param name="column">An integer value of the column</param>
+        /// <returns>Tool object at the specified row and column</returns>
         private Tool getTile(int row, int column)
         {
-            Tool tile = tiles[row, column];
-
-            return tile;
+            return tiles[row, column];
         }
+
 
         private void controller_Click(object sender, EventArgs e)
         {
@@ -278,11 +310,11 @@ namespace JKimQGame
                 case "btnLeft":
                     nextColumnIndex -= 1;
                     break;
-                case "btnRight":
-                    nextColumnIndex += 1;
-                    break;
                 case "btnDown":
                     nextRowIndex += 1;
+                    break;
+                case "btnRight":
+                    nextColumnIndex += 1;
                     break;
             }
 
@@ -297,23 +329,26 @@ namespace JKimQGame
                     numberOfRemainingBoxes--;
                     tiles[tileSelected.RowIndex, tileSelected.ColumnIndex] = null;
                     tileSelected.Dispose();
+                    tileSelected = null;
 
                     foreach (var control in pnlTiles.Controls)
                     {
                         if (control is Tool tile)
                         {
-                            if (tile.RowIndex == nextRowIndex && tile.ColumnIndex == nextColumnIndex)
+                            if (tile.RowIndex == nextRowIndex && 
+                                tile.ColumnIndex == nextColumnIndex)
                             {
                                 success = tile;
                             }
                         }
                     }
 
-                    numberOfMoves++;
                     tmrMatch.Enabled = true;
                 }
 
-                if (tileSelected == null || previousRowIndex != tileSelected.RowIndex || previousColumnIndex != tileSelected.ColumnIndex)
+                if (tileSelected == null || 
+                    previousRowIndex != tileSelected.RowIndex || 
+                    previousColumnIndex != tileSelected.ColumnIndex)
                 {
                     numberOfMoves++;
                 }
@@ -356,7 +391,6 @@ namespace JKimQGame
                 tmrMatch.Enabled = false;
             }
         }
-
 
 
         private void btnUp_MouseEnter(object sender, EventArgs e)
@@ -406,6 +440,7 @@ namespace JKimQGame
             btnDown.BackgroundImage = Properties.Resources.down;
             Cursor = Cursors.Arrow;
         }
+
 
         private void closeToolStripMenuItem_Click(object sender, EventArgs e)
         {
